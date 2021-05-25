@@ -61,7 +61,6 @@ func ensureOvnDBState(db string, kclient kube.Interface, stopCh <-chan struct{})
 			if ee.ExitCode() != 2 {
 				klog.Fatalf("Can't determine if the db is clustered/stand-alone" +
 					" restarting the checker")
-				os.Exit(1)
 			}
 		}
 	}

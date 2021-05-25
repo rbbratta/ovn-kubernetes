@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"net"
-	"os"
 	"reflect"
 	"strconv"
 	"strings"
@@ -104,8 +103,7 @@ func (oc *Controller) Start(nodeName string, wg *sync.WaitGroup, ctx context.Con
 				// we need to handle the transition properly like clearing
 				// the cache. It is better to exit for now.
 				// kube will restart and this will become a follower.
-				klog.Infof("No longer leader; exiting")
-				os.Exit(1)
+				klog.Exitf("No longer leader; exiting")
 			},
 			OnNewLeader: func(newLeaderName string) {
 				if newLeaderName != nodeName {
